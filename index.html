@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dark Mode Toggle</title>
+  <style>
+    /* Basisstijl */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #222222;
+      --accent-color: #0077ff;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    /* 🌙 Toggle-knop */
+    .toggle-btn {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .toggle-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Dark mode kleuren */
+    .dark-mode {
+      --bg-color: #121212;
+      --text-color: #f0f0f0;
+      --accent-color: #ffb400;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dark Mode Toggle 🌙</h1>
+  <button class="toggle-btn" id="modeToggle">Wissel thema</button>
+
+  <script>
+    // Selecteer body en knop
+    const body = document.body;
+    const button = document.getElementById('modeToggle');
+
+    // Controleer of gebruiker eerder een voorkeur had
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark-mode');
+    }
+
+    // Klik-event
+    button.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+
+      // Sla voorkeur op
+      if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+    });
+    // met behulp van ChatGPT gemaakt
+  </script>
+</body>
+</html>
+
